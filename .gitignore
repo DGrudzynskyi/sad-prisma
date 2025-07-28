@@ -22,6 +22,13 @@ src_managed/
 project/boot/
 project/plugins/project/
 
+# vscode specific
+.vscode/
+.metals/
+
+# very sad configurations
+very-sad-folder/*.yml
+
 # Scala-IDE specific
 .scala_dependencies
 .ensime
