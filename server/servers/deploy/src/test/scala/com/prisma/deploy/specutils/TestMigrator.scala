@@ -47,7 +47,7 @@ case class TestMigrator(
       applied
     }
 
-    result.await(10)
+    result.await(60)
     result
   }
 

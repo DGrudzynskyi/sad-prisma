@@ -17,7 +17,7 @@ object GetFieldFromSQLUniqueException {
   }
 
   def getFieldOptionMySql(fieldNames: Vector[String], e: SQLIntegrityConstraintViolationException): Option[String] = {
-    fieldNames.filter(x => e.getCause.getMessage.contains("\'" + x + "_")) match {
+    fieldNames.filter(x => e.getCause.getMessage.contains("." + x + "_") || e.getCause.getMessage.contains("\'" + x + "_")) match {
       case x +: _ => Some("Field name = " + x)
       case _      => None
     }

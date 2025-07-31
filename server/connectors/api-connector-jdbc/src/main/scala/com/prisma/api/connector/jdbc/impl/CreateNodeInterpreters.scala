@@ -39,7 +39,7 @@ case class CreateNodeInterpreter(
         if e.getErrorCode == 1062 && GetFieldFromSQLUniqueException.getFieldOptionMySql(mutaction.nonListArgs.keys, e).isDefined =>
       APIErrors.UniqueConstraintViolation(model.name, GetFieldFromSQLUniqueException.getFieldOptionMySql(mutaction.nonListArgs.keys, e).get)
 
-    case e: SQLIntegrityConstraintViolationException if e.getErrorCode == 1062 && e.getMessage.contains("'PRIMARY'") =>
+    case e: SQLIntegrityConstraintViolationException if e.getErrorCode == 1062 && e.getMessage.contains("PRIMARY'") =>
       APIErrors.UniqueConstraintViolation(model.name, s"Field name = " + model.idField_!.name)
 
     case e: SQLException if e.getErrorCode == 19 && GetFieldFromSQLUniqueException.getFieldOptionSQLite(mutaction.nonListArgs.keys, e).isDefined =>
@@ -134,7 +134,7 @@ case class NestedCreateNodeInterpreter(
         if e.getErrorCode == 1062 && GetFieldFromSQLUniqueException.getFieldOptionMySql(mutaction.nonListArgs.keys, e).isDefined =>
       APIErrors.UniqueConstraintViolation(relatedModel.name, GetFieldFromSQLUniqueException.getFieldOptionMySql(mutaction.nonListArgs.keys, e).get)
 
-    case e: SQLIntegrityConstraintViolationException if e.getErrorCode == 1062 && e.getMessage.contains("'PRIMARY'") =>
+    case e: SQLIntegrityConstraintViolationException if e.getErrorCode == 1062 && e.getMessage.contains("PRIMARY'") =>
       APIErrors.UniqueConstraintViolation(relatedModel.name, s"Field name = " + relatedModel.idField_!.name)
 
     case e: SQLException if e.getErrorCode == 19 && GetFieldFromSQLUniqueException.getFieldOptionSQLite(mutaction.nonListArgs.keys, e).isDefined =>
